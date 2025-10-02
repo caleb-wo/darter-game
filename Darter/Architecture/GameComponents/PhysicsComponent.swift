@@ -12,11 +12,11 @@ import GameplayKit
 class PhysicsComponent: GKComponent{
     let physicsBody: SKPhysicsBody
     
-    init(size: CGSize, category: UInt32){
+    init(size: CGSize, category: CollisionCategory){
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody.mass = 0.5
         self.physicsBody.affectedByGravity = true
-        self.physicsBody.categoryBitMask = category
+        self.physicsBody.categoryBitMask = category.rawValue
         
         super.init()
     }
@@ -34,7 +34,7 @@ class PhysicsComponent: GKComponent{
     }
     
     func applyJumpImpulse() {
-        physicsBody.velocity.dy = 0 
+        physicsBody.velocity.dy = 0
         physicsBody.applyImpulse(CGVector(dx: 0, dy: 500))
     }
 }
