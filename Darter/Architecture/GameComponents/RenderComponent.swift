@@ -11,7 +11,7 @@ import GameplayKit
 import SpriteKit
 
 
-/// Primary renderig component for game
+/// Primary rendering component for game
 /// entities.
 class RenderComponent: GKComponent {
     let spriteNode: SKSpriteNode
