@@ -9,6 +9,8 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+/// Main physics component. Currently only
+/// serves player entity.
 class PhysicsComponent: GKComponent{
     let physicsBody: SKPhysicsBody
     
@@ -25,6 +27,8 @@ class PhysicsComponent: GKComponent{
         fatalError("init(coder:) not implemented.")
     }
     
+    /// Runs when added to entity. Wires the physics
+    /// component "self" to the entity sprite node.
     override func didAddToEntity() {
         guard let renderComponent = entity?.component(ofType: RenderComponent.self) else {
             fatalError("PhysicsComponent requires a RenderComponent on the same entity.")
