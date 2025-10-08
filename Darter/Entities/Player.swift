@@ -34,7 +34,7 @@ class Player: GKEntity{
         super.init() // GKEntity must be initialized before components can be added.
         addComponent(renderComponent)
         addComponent(physicsComponent)
-//        addComponent(PlayerInputComponent())
+        addComponent(InputComponent())
     }
     
     required init?(coder: NSCoder){
@@ -42,9 +42,15 @@ class Player: GKEntity{
     }
     
     func handleInput(direction: CGVector){
-//        if let input = component(ofType: InputComponent.self){
-//            input.applyDirectionalMovement(direction)
-//        }
+        if let input = component(ofType: InputComponent.self){
+            input.applyDirectionalMovement(direction: direction)
+        }
+    }
+
+    func handleJump() {
+        if let input = component(ofType: InputComponent.self) {
+            input.applyJump()
+        }
     }
 }
 
