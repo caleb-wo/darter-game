@@ -17,7 +17,7 @@ class PhysicsComponent: GKComponent{
     init(size: CGSize, category: CollisionCategory){
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody.mass = 0.5
-        self.physicsBody.affectedByGravity = true
+//        self.physicsBody.affectedByGravity = true
         self.physicsBody.categoryBitMask = category.rawValue
         
         super.init()
