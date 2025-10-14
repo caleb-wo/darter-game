@@ -9,16 +9,30 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+enum PhysicsBodyType {
+    case dynamic
+    case absolute
+}
+
 /// Main physics component. Currently only
 /// serves player entity.
 class PhysicsComponent: GKComponent{
     let physicsBody: SKPhysicsBody
     
-    init(size: CGSize, category: CollisionCategory){
+    init(size: CGSize, category: CollisionCategory, buildType: PhysicsBodyType){
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
-        self.physicsBody.mass = 0.5
-        self.physicsBody.affectedByGravity = true
         self.physicsBody.categoryBitMask = category.rawValue
+        
+        switch buildType {
+        case .dynamic:
+            self.physicsBody.mass = 0.5
+            self.physicsBody.affectedByGravity = true
+            self.physicsBody.isDynamic = true
+            self.physicsBody.allowsRotation = false
+        case .absolute:
+            self.physicsBody.isDynamic = false
+            self.physicsBody.affectedByGravity = false
+        }
         
         super.init()
     }
