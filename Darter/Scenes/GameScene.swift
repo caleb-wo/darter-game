@@ -22,12 +22,19 @@ class GameScene: SKScene {
         self.backgroundColor = SKColor.black
         
         let playerStartPos = CGPoint(x: 0, y:0)
-        let platform
+        let platformTestPos = CGPoint(x: 0, y: -100)
+        
         self.player = Player(start: playerStartPos)
+        self.platform1 = Platform(at: playerStartPos, in: CGSize(width: 800, height: 50))
         
         if let playerNode = self.player.spriteNode {
             self.addChild(playerNode)
             print("Player entity added at \(playerStartPos)")
+        }
+        
+        if let platformNode = self.platform1.spriteNode {
+            self.addChild(platformNode)
+            print("Platform entity added at \(platformTestPos)")
         }
         
         self.entities.append(self.player)

@@ -29,7 +29,8 @@ class Player: GKEntity{
         let renderComponent = RenderComponent(color: .blue, in: size)
         renderComponent.spriteNode.position = startingPoint
         
-        let physicsComponent = PhysicsComponent(size: size, category: .character)
+        let physicsComponent = PhysicsComponent(size: size, category: .character, buildType: .dynamic)
+        physicsComponent.physicsBody.collisionBitMask = CollisionCategory.structure.rawValue
         
         super.init() // GKEntity must be initialized before components can be added.
         addComponent(renderComponent)

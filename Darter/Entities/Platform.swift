@@ -23,9 +23,9 @@ class Platform: GKEntity{
         let renderComponent = RenderComponent(color: .green, in: size)
         renderComponent.spriteNode.position = startingPoint
         
-        let physicsComponent = PhysicsComponent(size: size, category: .character)
-        physicsComponent.physicsBody.affectedByGravity = false
-        
+        let physicsComponent = PhysicsComponent(size: size, category: .structure, buildType: .absolute)
+        physicsComponent.physicsBody.collisionBitMask = CollisionCategory.character.rawValue
+
         super.init() // GKEntity must be initialized before components can be added.
         addComponent(renderComponent)
         addComponent(physicsComponent)
