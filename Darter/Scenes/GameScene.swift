@@ -11,6 +11,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     var player: Player!
+    var platform1: Platform!
     var activeDirection :CGVector = .zero
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
@@ -21,6 +22,7 @@ class GameScene: SKScene {
         self.backgroundColor = SKColor.black
         
         let playerStartPos = CGPoint(x: 0, y:0)
+        let platform
         self.player = Player(start: playerStartPos)
         
         if let playerNode = self.player.spriteNode {
