@@ -16,6 +16,7 @@ class GameScene: SKScene {
     }
     var player: Player!
     var platform1: Platform!
+    let gameCamera = SKCameraNode()
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
@@ -42,6 +43,10 @@ class GameScene: SKScene {
             print("Platform entity added at \(platformTestPos)")
         }
         
+        self.camera = gameCamera
+        addChild(gameCamera)
+        gameCamera.position = CGPoint(x: frame.midX, y: frame.midY)
+
         self.entities.append(self.player)
     }
     
@@ -57,11 +62,16 @@ class GameScene: SKScene {
         print("Input Manager bridge setup complete.")
     }
     
+//    override func didMove(to view: SKView) {
+//    }
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        guard let camera = camera, let player = player.spriteNode else { return }
+        let x = lerp(current: camera.position.x, target: player.position.x, speed: 0.1)
+        let y = lerp(current: camera.position.y, target: player.position.y, speed: 0.1)
+        camera.position = CGPoint(x: x, y: y)
         
-        // Initialize _lastUpdateTime if it has not already been
+        
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
         }
