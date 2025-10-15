@@ -8,27 +8,23 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import SwiftUI
 
 class GameViewController: UIViewController {
+    let inputManager = GameInputManager()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
-        // including entities and graphs.
         if let scene = GKScene(fileNamed: "GameScene") {
             
-            // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! GameScene? {
                 
-                // Copy gameplay related content over to the scene
                 sceneNode.entities = scene.entities
                 sceneNode.graphs = scene.graphs
-                
-                // Set the scale mode to scale to fit the window
                 sceneNode.scaleMode = .aspectFill
                 
-                // Present the scene
                 if let view = self.view as! SKView? {
                     view.presentScene(sceneNode)
                     
@@ -37,6 +33,28 @@ class GameViewController: UIViewController {
                     view.showsFPS = true
                     view.showsNodeCount = true
                 }
+                
+                sceneNode.inputManager = self.inputManager
+                
+                
+                let controlsView = GameControlsOverlay(inputManager: self.inputManager)
+                
+                let hostingController = UIHostingController(rootView: controlsView)
+                
+                hostingController.view.backgroundColor = .clear // Make the background transparent
+                hostingController.view.frame = view.bounds // Cover the entire screen
+                
+                addChild(hostingController)
+                view.addSubview(hostingController.view)
+                hostingController.didMove(toParent: self)
+                
+                hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+                    hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                    hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                    hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+                ])
             }
         }
     }
