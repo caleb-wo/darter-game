@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameControlsOverlay: View {
-    @StateObject var inputManager = GameInputManager()
+   @State var inputManager = GameInputManager()
     
     var body: some View {
         VStack{

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct JumpButton: View {
-    @ObservedObject var inputManager: GameInputManager
+    @State var inputManager: GameInputManager
     
     var body: some View {
         Button(action: {

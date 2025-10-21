@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct MovementJoystick: View {
-    @ObservedObject var inputManager: GameInputManager
+    @State var inputManager: GameInputManager
     
     @State private var thumbOffset: CGSize = .zero
     

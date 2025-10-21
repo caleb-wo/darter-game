@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import CoreGraphics
 
-class GameInputManager: ObservableObject{
+@Observable class GameInputManager {
     var jumpAction: (()-> Void)?
     var directionalAction: ((CGVector)-> Void)?
     
