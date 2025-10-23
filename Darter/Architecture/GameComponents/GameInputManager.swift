@@ -12,12 +12,13 @@ import CoreGraphics
 @Observable class GameInputManager {
     var jumpAction: (()-> Void)?
     var directionalAction: ((CGVector)-> Void)?
+    var currentDirection: CGVector = .zero
     
     func handleJump(){
         jumpAction?()
     }
     
     func handleDirectionalInput(direction: CGVector){
-        directionalAction?(direction)
+        self.currentDirection = direction
     }
 }

@@ -54,11 +54,6 @@ class GameScene: SKScene {
         inputManager?.jumpAction = { [weak self] in
             self?.player?.handleJump()
         }
-        
-        inputManager?.directionalAction = { [weak self] direction in
-            self?.player?.handleInput(direction: direction)
-        }
-        
         print("Input Manager bridge setup complete.")
     }
     
@@ -66,6 +61,10 @@ class GameScene: SKScene {
 //    }
     
     override func update(_ currentTime: TimeInterval) {
+        if let direction = inputManager?.currentDirection {
+                self.player?.handleInput(direction: direction)
+        }
+
         guard let camera = camera, let player = player.spriteNode else { return }
         let x = lerp(current: camera.position.x, target: player.position.x, speed: 0.1)
         let y = lerp(current: camera.position.y, target: player.position.y, speed: 0.1)

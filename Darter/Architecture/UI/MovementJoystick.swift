@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MovementJoystick: View {
     @State var inputManager: GameInputManager
-    
+    @State var direction: CGVector  = .zero
     @State private var thumbOffset: CGSize = .zero
     
     private let baseRadius: CGFloat = 80
@@ -32,9 +32,9 @@ struct MovementJoystick: View {
                 
                 let normalizedX = thumbOffset.width / baseRadius
                 let normalizedY = thumbOffset.height / baseRadius
-                let directionVector = CGVector(dx: normalizedX, dy: normalizedY)
+                let direction = CGVector(dx: normalizedX, dy: normalizedY)
                 
-                inputManager.handleDirectionalInput(direction: directionVector)
+                inputManager.handleDirectionalInput(direction: direction)
             }
             .onEnded { _ in
                 withAnimation(.spring(response: 0.2)) {
