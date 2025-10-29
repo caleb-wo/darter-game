@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Left Edge.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Left Edge.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

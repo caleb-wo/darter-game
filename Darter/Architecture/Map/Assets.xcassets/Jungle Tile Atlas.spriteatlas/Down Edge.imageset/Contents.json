@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Down Edge.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Down Edge.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
