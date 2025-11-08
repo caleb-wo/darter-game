@@ -1,4 +1,4 @@
-# Darter
+# Darter [🚨[ABANDONED, see Darter2.0](https://github.com/caleb-wo/Darter2.0)🚨]
 
 ## Introduction
 
